@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HelloWorld from '../components/HelloWorld.vue'
+import MainView from '../view/MainView.vue'
 
 Vue.use(VueRouter);
 
 const routes = [
 	{
 		path: '/',
-		component: HelloWorld
+		component: MainView
 	}
 ]
 
