@@ -2,14 +2,21 @@
 	<el-container>
     <el-header>Header</el-header>
     <el-container>
-      <el-aside width="200px">Aside</el-aside>
+      <el-aside width="auto">
+        <common-aside></common-aside>
+      </el-aside>
       <el-main>Main</el-main>
     </el-container>
   </el-container>
 </template>
 
 <script>
-
+import CommonAside from '../components/CommonAside.vue'
+export default{
+  components: {
+    CommonAside
+  }
+}
 </script>
 
 <style>
@@ -35,7 +42,8 @@
   }
   
   #app > .el-container {
-    margin-bottom: 40px;
+/*    margin-bottom: 40px;*/
+    height: 100vh;
   }
   
   .el-container:nth-child(5) .el-aside,
