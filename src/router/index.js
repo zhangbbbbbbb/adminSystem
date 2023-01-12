@@ -10,7 +10,7 @@ requireComponents.keys().forEach(fileName => {
   // 组件实例
   const reqCom = requireComponents(fileName).default
   // 截取路径作为组件名
-  const reqComName =reqCom.name|| fileName.replace(/\.\/(.*)\.vue/,'$1')
+  const reqComName = reqCom.name|| fileName.replace(/\.\/(.*)\.vue/,'$1')
   // 存放路由
   routeList[reqComName] = reqCom
 })
