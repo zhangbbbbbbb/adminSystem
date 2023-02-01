@@ -1,12 +1,12 @@
 <template>
-  <el-submenu v-if="menu.children" :index="`${index}`">
+  <el-submenu v-if="menu.children" :index="menu.name">
     <template v-slot:title>
       <i :class="`el-icon-${menu.icon}`"></i>
       <span slot="title">{{menu.label}}</span>
     </template>
-    <common-aside-item v-for="(menu, idx) in menu.children" :key="`${index}-${idx}`" :menu="menu" :index="`${index}-${idx}`"></common-aside-item>
+    <common-aside-item v-for="(item, index) in menu.children" :key="`${index}`" :menu="item"></common-aside-item>
   </el-submenu>
-  <el-menu-item v-else :index="`${index}`">
+  <el-menu-item v-else :index="menu.path">
     <i :class="`el-icon-${menu.icon}`"></i>
     <span slot="title">{{menu.label}}</span>
   </el-menu-item>
@@ -15,6 +15,6 @@
 <script>
   export default {
     name: 'CommonAsideItem',
-    props: ['menu', 'index']
+    props: ['menu']
   }
 </script>
