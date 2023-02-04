@@ -1,6 +1,8 @@
 <template>
 	<el-container>
-    <el-header>Header</el-header>
+    <el-header>
+      <common-header></common-header>
+    </el-header>
     <el-container>
       <el-aside width="auto">
         <common-aside></common-aside>
@@ -14,14 +16,16 @@
 
 <script>
 import CommonAside from '../components/CommonAside.vue'
+import CommonHeader from '../components/CommonHeader.vue'
 export default{
   components: {
-    CommonAside
+    CommonAside,
+    CommonHeader
   }
 }
 </script>
 
-<style>
+<style lang="less">
   .el-header, .el-footer {
     background-color: #B3C0D1;
     color: #333;

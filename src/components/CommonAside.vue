@@ -8,15 +8,11 @@
   import CommonAsideItem from './CommonAsideItem.vue'
   import { mapState } from 'vuex'
   export default {
-    data() {
-      return {
-        isCollapse: true
-      };
-    },
     computed: {
       ...mapState('menu', {
         defaultPage: 'defaultPage',
-        menuList: 'menuList'
+        menuList: 'menuList',
+        isCollapse: 'isCollapse'
       })
     },
     methods: {
@@ -37,5 +33,8 @@
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
     min-height: 400px;
+  }
+  .el-menu-vertical-demo{
+    height: 100%;
   }
 </style>

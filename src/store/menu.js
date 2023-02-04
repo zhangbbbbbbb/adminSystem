@@ -53,6 +53,12 @@ export default {
           }
         ]
       }
-    ]
+    ],
+    isCollapse: true
+  },
+  mutations: {
+    setIsCollapse(state, payLoad) {
+      state.isCollapse = payLoad
+    }
   }
 }
