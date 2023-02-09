@@ -5,6 +5,9 @@ import menu from './menu.js'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
+  state: {
+    token: 1
+  },
   modules: {
     menu
   }

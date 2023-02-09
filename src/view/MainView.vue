@@ -50,6 +50,7 @@ export default{
   #app > .el-container {
 /*    margin-bottom: 40px;*/
     height: 100vh;
+    min-width: 600px;
   }
   
   .el-container:nth-child(5) .el-aside,

@@ -6,13 +6,15 @@
 
 <script>
   import CommonAsideItem from './CommonAsideItem.vue'
-  import { mapState } from 'vuex'
+  import { mapState, mapGetters } from 'vuex'
   export default {
     computed: {
       ...mapState('menu', {
         defaultPage: 'defaultPage',
-        menuList: 'menuList',
         isCollapse: 'isCollapse'
+      }),
+      ...mapGetters('menu', {
+        menuList: 'menuList'
       })
     },
     methods: {

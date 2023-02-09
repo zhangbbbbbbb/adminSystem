@@ -3,23 +3,17 @@ export default {
   state: {
     defaultPage: {
       path: '/home',
+      name: 'home',
+      label: '首页',
+      icon:'s-home',
       component: 'HomeView'
     },
-    menuList: [
-      {
-        path: '/home',
-        name: 'home',
-        label: '首页',
-        icon:'s-home',
-        url: 'Home/Home',
-        component: 'HomeView'
-      },
+    routes: [
       {
         path: '/mall',
         name: 'mall',
         label: '商品管理',
         icon:'s-goods',
-        url: 'MallManage/MallManage',
         component: 'MallManageView'
       },
       {
@@ -27,7 +21,6 @@ export default {
         name: 'user',
         label: '用户管理',
         icon:'user',
-        url: 'UserManage/userManage',
         component: 'UserManageView'
       },
       {
@@ -40,7 +33,6 @@ export default {
             name: 'page1',
             label: '页面1',
             icon:'setting',
-            url: 'other/Pageone',
             component: 'PageoneView'
           },
           {
@@ -48,13 +40,17 @@ export default {
             name: 'page2',
             label: '页面2',
             icon:'setting',
-            url: 'other/Pagetwo',
             component: 'PagetwoView'
           }
         ]
       }
     ],
     isCollapse: true
+  },
+  getters: {
+    menuList(state) {
+      return [state.defaultPage, ...state.routes]
+    }
   },
   mutations: {
     setIsCollapse(state, payLoad) {
