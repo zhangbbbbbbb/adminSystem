@@ -1,5 +1,5 @@
 <template>
-  <el-menu :default-active="$route.path == '/' ? defaultPage.path : $route.path" router class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+  <el-menu :default-active="$route.path == '/' ? defaultPage.path : $route.path" router class="el-menu-vertical-demo" :collapse="isCollapse">
     <common-aside-item v-for="(menu, index) in menuList" :key="index" :menu="menu"></common-aside-item>
   </el-menu>
 </template>
@@ -16,14 +16,6 @@
       ...mapGetters('menu', {
         menuList: 'menuList'
       })
-    },
-    methods: {
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
-      }
     },
     components: {
       CommonAsideItem

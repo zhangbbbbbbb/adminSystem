@@ -4,10 +4,8 @@
     <el-col :span="16" :lg="18" :xl="20">
       <el-button type="primary" :icon="isCollapse ? 'el-icon-s-unfold' : 'el-icon-s-fold'" @click="setIsCollapse(!isCollapse)"></el-button>
       <el-breadcrumb separator-class="el-icon-caret-right">
-        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-        <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-        <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+        <el-breadcrumb-item v-for="item in $route.meta.parents" :to="item.path || false" :key="item.label">{{ item.label }}</el-breadcrumb-item>
+        <el-breadcrumb-item>{{ $route.meta.label }}</el-breadcrumb-item>
       </el-breadcrumb>
     </el-col>
     <el-col :span="4" :lg="3" :xl="2">头像</el-col>

@@ -33,14 +33,14 @@ export default {
             name: 'page1',
             label: '页面1',
             icon:'setting',
-            component: 'PageoneView'
+            component: 'PageOneView'
           },
           {
             path: '/page2',
             name: 'page2',
             label: '页面2',
             icon:'setting',
-            component: 'PagetwoView'
+            component: 'PageTwoView'
           }
         ]
       }
