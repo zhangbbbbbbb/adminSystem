@@ -7,7 +7,7 @@
       </template>
       <common-aside-item v-for="(item, index) in menu.children" :key="`${index}`" :menu="item"></common-aside-item>
     </el-submenu>
-    <el-menu-item v-else :index="menu.path">
+    <el-menu-item v-else :index="menu.path" :disabled="menu.disabled">
       <i :class="`el-icon-${menu.icon}`"></i>
       <span slot="title">{{menu.label}}</span>
     </el-menu-item>

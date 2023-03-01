@@ -21,6 +21,25 @@ export const getMenu = axios.create({
   }
 })
 
+export const getDataofVedio = axios.create({
+  baseURL: '/api/vedio',
+  headers: {
+    token: store.state.token
+  }
+})
+
+export const getDataofFans = axios.create({
+  baseURL: '/api/fans',
+  headers: {
+    token: store.state.token
+  }
+})
+
 // export const getMenu错误写法
 // export  getMenu错误写法
-export default axios
+export default {
+  axios,
+  getMenu,
+  getDataofVedio,
+  getDataofFans
+}

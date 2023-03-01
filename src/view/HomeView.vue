@@ -1,9 +1,19 @@
 <template>
-  <p>Home</p>
+  <p>Home{{ a }}</p>
 </template>
 
 <script>
   export default {
-    
+    data() {
+      return {
+        a: 1
+      }
+    },
+    beforeMount() {
+      this.a = 2
+    },
+    beforeUpdate() {
+      console.log('update')
+    }
   }
 </script>

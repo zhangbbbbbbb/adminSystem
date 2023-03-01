@@ -1,10 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import store from '../store'
+import { defaultPage } from '../../common.config'
 
 Vue.use(VueRouter)
 
-const defaultPage = store.state.menu.defaultPage
 const routes = [
  {
    path: '/',

@@ -1,5 +1,5 @@
 <template>
-  <el-menu :default-active="$route.path == '/' ? defaultPage.path : $route.path" router class="el-menu-vertical-demo" :collapse="isCollapse">
+  <el-menu :default-active="$route.path == '/' ? $config.defaultPage.path : $route.path" router class="el-menu-vertical-demo" :collapse="isCollapse">
     <common-aside-item v-for="(menu, index) in menuList" :key="index" :menu="menu"></common-aside-item>
   </el-menu>
 </template>
@@ -10,7 +10,6 @@
   export default {
     computed: {
       ...mapState('menu', {
-        defaultPage: 'defaultPage',
         isCollapse: 'isCollapse'
       }),
       ...mapGetters('menu', {

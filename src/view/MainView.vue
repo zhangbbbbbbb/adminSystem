@@ -44,7 +44,7 @@ export default{
     background-color: #E9EEF3;
     color: #333;
     text-align: center;
-    line-height: 160px;
+    // line-height: 160px;
   }
   
   #app > .el-container {

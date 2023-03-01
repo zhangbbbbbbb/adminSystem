@@ -5,8 +5,9 @@ import 'element-ui/lib/theme-chalk/index.css'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import axios, { getMenu } from './api/request.js'
+import axios from './api/request.js'
 import { createRoutes } from './api/router'
+import config from '../common.config'
 
 Vue.config.productionTip = false
 
@@ -14,14 +15,18 @@ Vue.config.productionTip = false
 // Vue.component(Select.name, Select)
 Vue.use(ElementUI)
 
-Vue.prototype.$axios = axios
-Vue.prototype.$getMenu = getMenu
+// 批量导入数据访问接口
+Object.keys(axios).forEach(key => {
+  Vue.prototype[`$${key}`] = axios[key]
+})
+Vue.prototype.$config = config
 
 new Vue({
   router,
   store,
   render: h => h(App),
   created() {
+    console.log(this.$getMenu)
     // 初始化菜单信息
     // if(store.state.token) {
     //   this.$getMenu().then((res) => {

@@ -1,46 +1,66 @@
+import { defaultPage } from '../../common.config'
 export default {
   namespaced: true,
   state: {
-    defaultPage: {
-      path: '/home',
-      name: 'home',
-      label: '首页',
-      icon:'s-home',
-      component: 'HomeView'
-    },
     routes: [
-      {
-        path: '/mall',
-        name: 'mall',
-        label: '商品管理',
-        icon:'s-goods',
-        component: 'MallManageView'
-      },
       {
         path: '/user',
         name: 'user',
         label: '用户管理',
         icon:'user',
-        component: 'UserManageView'
+        component: 'UserView'
       },
       {
-        name: 'other',
-        label: '其他',
-        icon: 'more',
+        name: 'vedio',
+        label: '视频',
+        icon: 'video-play',
         children: [
           {
-            path: '/page1',
-            name: 'page1',
-            label: '页面1',
+            path: '/vedioManage',
+            name: 'vedioManage',
+            label: '管理',
             icon:'setting',
-            component: 'PageOneView'
+            component: {
+              view: 'manage',
+              type: 'vedio'
+            }
           },
           {
-            path: '/page2',
-            name: 'page2',
-            label: '页面2',
+            path: '/vedioCharts',
+            name: 'vedioCharts',
+            label: '数据',
+            icon:'pie-chart',
+            component: {
+              view: 'charts',
+              type: 'vedio'
+            }
+          }
+        ]
+      },
+      {
+        name: 'fans',
+        label: '粉丝',
+        icon: 'view',
+        children: [
+          {
+            path: '/fansManage',
+            name: 'fansManage',
+            label: '管理',
             icon:'setting',
-            component: 'PageTwoView'
+            component: {
+              view: 'manage',
+              type: 'fans'
+            }
+          },
+          {
+            path: '/fansCharts',
+            name: 'fansCharts',
+            label: '数据',
+            icon:'pie-chart',
+            component: {
+              view: 'charts',
+              type: 'fans'
+            }
           }
         ]
       }
@@ -49,7 +69,7 @@ export default {
   },
   getters: {
     menuList(state) {
-      return [state.defaultPage, ...state.routes]
+      return [defaultPage, ...state.routes]
     }
   },
   mutations: {
