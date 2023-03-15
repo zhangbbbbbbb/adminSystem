@@ -8,94 +8,155 @@ export const defaultPage = {
 
 export const manageView = {
   max: 5,
-  video: {
-    selection: true,
-    column: {
-      label: {
-        label: '标题'
-      },
-      date: {
-        label: '日期'
-      },
-      likes: {
-        label: '点赞',
-        sort: true
-      },
-      comments: {
-        label: '评论',
-        sort: true
-      },
-      retransmission: {
-        label: '转发',
-        sort: true
-      },
-      tags: {
-        label: '标签',
-        filter: true
-      }
+  customizeWidth: true,
+  vedio: {
+    selection: {
+      width: 43
     },
-    search: true,
-    opera: [
+    columns: [
       {
-        taxt: '下架',
-        type: 'button'
+        prop: 'label',
+        label: '标题',
+        setting: true,
+        minWidth: 120
       },
       {
-        taxt: '删除',
-        type: 'button'
+        prop: 'likes',
+        label: '点赞',
+        sortable: true,
+        minWidth: 120
+      },
+      {
+        prop: 'comments',
+        label: '评论',
+        sortable: true,
+        minWidth: 120
+      },
+      {
+        prop: 'retransmission',
+        label: '转发',
+        sortable: true,
+        minWidth: 120
       }
     ],
-    setting: [
-      {
-        text: '标题',
-        type: 'input'
+    date: {
+      label: '发布日期',
+      prop: 'date',
+      filters: true,
+      sortable: true,
+      minWidth: 120
+    },
+    tags: {
+      label: '标签',
+      prop: 'tags',
+      setting: true,
+      minWidth: 200
+    },
+    opera: {
+      search: {
+        columns: ['label'],
+        placeholder: '搜索标题'
       },
-      {
-        text: '标签',
-        type: 'checkbox-group',
-        checkbox: ['影视', '生活', '技术', '才艺', '科技']
-      }
-    ]
+      content: [
+        {
+          prop: 'status',
+          checkList: [
+            {
+              text: '置顶'
+            }, 
+            {
+              text: '下架',
+              disabled: ['置顶']
+            }
+          ],
+          type: 'checkboxGroup'
+        },
+        {
+          text: '删除',
+          type: 'button'
+        }
+      ],
+      minWidth: 300
+    }
   },
   fans: {
-    selection: true,
-    sort: ['date'],
-    column: {
-      name: {
-        label: '姓名'
-      },
-      date: {
-        label: '关注日期'
-      },
-      likes: {
-        label: '点赞',
-        sort: true
-      },
-      comments: {
-        label: '评论',
-        sort: true
-      },
-      retransmission: {
-        label: '转发',
-        sort: true
-      },
-      tags: {
-        label: '标签',
-        filter: true
-      }
+    selection: {
+      width: 43
     },
-    search: true,
-    opera: [
+    columns: [
       {
-        taxt: '禁言',
-        type: 'button'
+        prop: 'name',
+        label: '姓名',
+        minWidth: 100
       },
       {
-        taxt: '拉黑',
-        type: 'button'
+        prop: 'sex',
+        label: '性别',
+        minWidth: 100,
+        filters: [
+          {
+            text: '男',
+            value: '男'
+          },
+          {
+            text: '女',
+            value: '女'
+          }
+        ]
+      },
+      {
+        prop: 'likes',
+        label: '点赞',
+        sortable: true,
+        minWidth: 100
+      },
+      {
+        prop: 'comments',
+        label: '评论',
+        sortable: true,
+        minWidth: 100
+      },
+      {
+        prop: 'retransmission',
+        label: '转发',
+        sortable: true,
+        minWidth: 100
       }
     ],
-    setting: false
+    date: {
+      label: '关注日期',
+      prop: 'date',
+      filters: true,
+      sortable: true,
+      minWidth: 100
+    },
+    tags: {
+      label: '标签',
+      prop: 'tags',
+      minWidth: 200
+    },
+    opera: {
+      search: {
+        columns: ['name'],
+        placeholder: '搜索名字'
+      },
+      content: [
+        {
+          prop: 'status',
+          checkList: [
+            {
+              text: '禁言'
+            }, 
+            {
+              text: '拉黑',
+              connect: ['禁言']
+            }
+          ],
+          type: 'checkboxGroup'
+        }
+      ],
+      minWidth: 200
+    }
   }
 }
 

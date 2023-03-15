@@ -21,12 +21,13 @@ Object.keys(axios).forEach(key => {
 })
 Vue.prototype.$config = config
 
+
 new Vue({
   router,
   store,
   render: h => h(App),
   created() {
-    console.log(this.$getMenu)
+    // console.log(this.$getMenu)
     // 初始化菜单信息
     // if(store.state.token) {
     //   this.$getMenu().then((res) => {

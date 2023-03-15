@@ -7,8 +7,10 @@
       <el-aside width="auto">
         <common-aside></common-aside>
       </el-aside>
-      <el-main>
-        <router-view></router-view>
+      <el-main ref="main">
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
       </el-main>
     </el-container>
   </el-container>
@@ -21,6 +23,23 @@ export default{
   components: {
     CommonAside,
     CommonHeader
+  },
+  methods: {
+    getMainContentWidth() {
+      const mainDom = this.$refs['main'].$el
+      let mainDomPadding = 0
+      if(window.getComputedStyle) {
+        mainDomPadding = parseInt(window.getComputedStyle(mainDom, null).padding)
+      }else if(mainDom.currentStyle) {
+        mainDomPadding = parseInt(mainDom.currentStyle.padding)
+      }
+      this.$store.commit('main/setMainContentWidth', mainDom.clientWidth - mainDomPadding*2)
+      // console.log(this.$store.state.main.mainContentWidth)
+    }
+  },
+  mounted() {
+    this.getMainContentWidth()
+    window.addEventListener("resize",this.getMainContentWidth)
   }
 }
 </script>
