@@ -21,6 +21,18 @@ Object.keys(axios).forEach(key => {
 })
 Vue.prototype.$config = config
 
+Vue.directive('scoped', {
+  inserted: function(el, binding, vnode) {
+    const scopedId = binding.value.$options._scopeId
+    console.dir(el)
+    console.dir(el.__vue__)
+    console.dir(vnode)
+    if(!scopedId) {
+      return
+    }
+    // const componentTag = el.__vue__.$vnode.tag
+  }
+})
 
 new Vue({
   router,
@@ -29,17 +41,19 @@ new Vue({
   created() {
     // console.log(this.$getMenu)
     // 初始化菜单信息
-    // if(store.state.token) {
-    //   this.$getMenu().then((res) => {
-    //     console.log(res)
-    //   })
-    // }
+    if(store.state.token) {
+      this.$getMenu().then((res) => {
+        // console.log(res)
+        store.commit('menu/changeRoutes', res.data.data)
+        let newRoutes = createRoutes(store.state.menu.routes)
+        // console.log(newRoutes)
+        newRoutes.forEach(item => {
+          this.$router.addRoute(item)
+        })
+      })
+    }
 
     // 未对接后台，先直接添加路由
-    let newRoutes = createRoutes(store.state.menu.routes)
-    console.log(newRoutes)
-    newRoutes.forEach(item => {
-      this.$router.addRoute(item)
-    })
+    
   }
 }).$mount('#app')

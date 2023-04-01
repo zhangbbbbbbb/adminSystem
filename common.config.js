@@ -18,25 +18,25 @@ export const manageView = {
         prop: 'label',
         label: '标题',
         setting: true,
-        minWidth: 120
+        minWidth: 90
       },
       {
         prop: 'likes',
         label: '点赞',
         sortable: true,
-        minWidth: 120
+        minWidth: 90
       },
       {
         prop: 'comments',
         label: '评论',
         sortable: true,
-        minWidth: 120
+        minWidth: 90
       },
       {
         prop: 'retransmission',
         label: '转发',
         sortable: true,
-        minWidth: 120
+        minWidth: 90
       }
     ],
     date: {
@@ -44,13 +44,22 @@ export const manageView = {
       prop: 'date',
       filters: true,
       sortable: true,
-      minWidth: 120
+      minWidth: 150
     },
     tags: {
       label: '标签',
       prop: 'tags',
-      setting: true,
-      minWidth: 200
+      allowChange: true,
+      minWidth: 150
+    },
+    status: {
+      label: '状态',
+      prop: 'status',
+      minWidth: 150,
+      tags: [
+        {text: '置顶', value: '置顶', color: '#8ce5a4', font: '#00c598'}, 
+        {text: '下架', value: '下架', color: 'grey', font: 'black'}
+      ]
     },
     opera: {
       search: {
@@ -76,7 +85,7 @@ export const manageView = {
           type: 'button'
         }
       ],
-      minWidth: 300
+      minWidth: 250
     }
   },
   fans: {
@@ -87,12 +96,12 @@ export const manageView = {
       {
         prop: 'name',
         label: '姓名',
-        minWidth: 100
+        minWidth: 90
       },
       {
         prop: 'sex',
         label: '性别',
-        minWidth: 100,
+        minWidth: 90,
         filters: [
           {
             text: '男',
@@ -108,19 +117,19 @@ export const manageView = {
         prop: 'likes',
         label: '点赞',
         sortable: true,
-        minWidth: 100
+        minWidth: 90
       },
       {
         prop: 'comments',
         label: '评论',
         sortable: true,
-        minWidth: 100
+        minWidth: 90
       },
       {
         prop: 'retransmission',
         label: '转发',
         sortable: true,
-        minWidth: 100
+        minWidth: 90
       }
     ],
     date: {
@@ -133,7 +142,18 @@ export const manageView = {
     tags: {
       label: '标签',
       prop: 'tags',
-      minWidth: 200
+      minWidth: 150
+    },
+    status: {
+      label: '状态',
+      prop: 'status',
+      minWidth: 150,
+      tags: [
+        {text: '禁言', value: '禁言', color: 'grey', font: 'black'}, 
+        {text: '拉黑', value: '拉黑', color: 'grey', font: 'black'}, 
+        {text: '关注', value: '关注', color: '#8ce5a4', font: '#00c598'}, 
+        {text: '特别关注', value: '特别关注', color: '#8ce5a4', font: '#00c598'}
+      ]
     },
     opera: {
       search: {
@@ -150,12 +170,22 @@ export const manageView = {
             {
               text: '拉黑',
               connect: ['禁言']
+            },
+            {
+              text: '关注'
+            },
+            {
+              text: '特别关注'
             }
           ],
-          type: 'checkboxGroup'
+          type: 'select'
+        },
+        {
+          text: '删除',
+          type: 'button'
         }
       ],
-      minWidth: 200
+      minWidth: 250
     }
   }
 }

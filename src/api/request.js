@@ -11,7 +11,7 @@ axios.interceptors.response.use(res => {
   return Promise.reject(err)
 })
 
-console.log(store.state.token)
+// console.log(store.state.token)
 
 // 正确导出
 export const getMenu = axios.create({
@@ -21,15 +21,8 @@ export const getMenu = axios.create({
   }
 })
 
-export const getDataofVedio = axios.create({
-  baseURL: '/api/vedio',
-  headers: {
-    token: store.state.token
-  }
-})
-
-export const getDataofFans = axios.create({
-  baseURL: '/api/fans',
+export const getData = axios.create({
+  baseURL: '/api',
   headers: {
     token: store.state.token
   }
@@ -40,6 +33,5 @@ export const getDataofFans = axios.create({
 export default {
   axios,
   getMenu,
-  getDataofVedio,
-  getDataofFans
+  getData
 }

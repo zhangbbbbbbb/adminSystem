@@ -29,17 +29,28 @@
         v-bind="{prop, label} = config.tags"
         :width="getWidth(config.tags)"
         :min-width="getMinWidth(config.tags)"
-        :tags="$store.state.main[`${type}Tags`]"></table-tags-column>
+        :tags="tagsList"
+        @click="config.tags.allowChange && (dialogTigsVisible = true)"></table-tags-column>
+      <table-tags-column 
+        v-if="config.status" 
+        v-bind="{prop, label} = config.status"
+        :width="getWidth(config.status)"
+        :min-width="getMinWidth(config.status)"
+        :tags="config.status.tags"></table-tags-column>
       <table-opera-column
         :width="getWidth(config.opera)"
         :min-width="getMinWidth(config.opera)"
         :opera="config.opera"
-        :tableData="tableData"
-        :multipleSelection="multipleSelection"></table-opera-column>
+        :multipleSelection="multipleSelection" v-scoped="this"></table-opera-column>
     </el-table>
     <div>1</div>
+    <el-dialog :title="config.tags.label"
+      :visible.sync="dialogTigsVisible">
+      <el-tag 
+        v-for="tag in tagsList"
+        :key="tag.value">{{ tag.text }}</el-tag>
+    </el-dialog>
   </div>
-
 </template>
 
 <script>
@@ -51,9 +62,10 @@
   export default {
     data() {
       return {
-        isShowTooltip: false,
         tableData: [],
-        multipleSelection: []
+        tagsList: [],
+        multipleSelection: [],
+        dialogTigsVisible: false
       }
     },
     computed: {
@@ -108,11 +120,9 @@
       TableDateColumn,
       TableOperaColumn
     },
-    created() {
+    async created() {
       this.config = this.$config.manageView[this.type]
-      this.tableData = this.$store.state.main[`${this.type}Data`]
-      // console.log(this.width, this.minWidth)
-
+      
       // 判断是否使用自定义适应性宽度，现在只固定一种配置比例，后续要实现大中小屏不同配置比例，
       // 只需要将width和minWidth加上前缀，判断屏幕大小动态获取对应前缀就好了，
       // 总width和minWidth缓存，根据对应前缀判断是否已经计算过，没计算过的加入缓存
@@ -132,9 +142,28 @@
           }
         })
       }
+
+      // 后面如果增加设置表格的配置的功能，还需要先获取配置
+      if(this.config.tags){
+        let tagsRes = await this.$getData({url: `/${this.type}/tags`}).then(res => res.data.data).catch(err => {
+          console.log(err)
+          return []
+        })
+        this.tagsList = tagsRes
+      }
+      
+      let resData = await this.$getData({url: `/${this.type}`}).then(res => res.data.data).catch(err => {
+        console.log(err)
+        return []
+      })
+      resData.forEach(e => {
+          e.statusChecked = e.status[0]
+      });
+      this.tableData = resData
+      // console.log(this.tableData[0].statusChecked === this.tableData[0].status[0])
     },
     mounted() {
-      // console.log(document.defaultView)
+      // console.log('mounted')
       
     },
     updated() {
@@ -150,3 +179,18 @@
     }
   }
 </script>
+
+<style scoped>
+  .el-dialog__wrapper::v-deep .el-dialog{
+    margin-top: 40vh!important;
+    transform: translateY(-50%);
+  }
+
+  .el-dialog__wrapper::v-deep .el-dialog__body{
+    display: flex;
+  }
+
+  .el-dialog__wrapper .el-tag{
+    margin-left: 10px;
+  }
+</style>

@@ -8,7 +8,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    token: 1
+    token: '12'
   },
   modules: {
     menu,

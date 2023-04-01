@@ -9,9 +9,13 @@
     :width="width"
     :min-width="minWidth">
     <template slot-scope="scope">
-      <el-tooltip placement="top" :disabled="!isShowToolTip[`tagsRow${scope.$index}`]">
+      <el-tooltip placement="top" :disabled="!isShowToolTip[`tagsRow${scope.row.id}`]">
         <div slot="content">{{scope.row[prop].map(v => tagsObj[v].text).join(',')}}</div>
-        <div :ref="`tagsRow${scope.$index}`" class="ellipsis" @mouseover="showToolTip(`tagsRow${scope.$index}`)">
+        <div 
+          :ref="`tagsRow${scope.row.id}`" 
+          class="ellipsis" 
+          @mouseover="showToolTip(`tagsRow${scope.row.id}`)" 
+          @click="$emit('click')">
           <el-tag
             disable-transitions
             v-for="tag in scope.row[prop]"
@@ -28,6 +32,7 @@
 <script>
   export default {
     props: ['prop', 'label', 'width', 'minWidth', 'tags'],
+    emits: ['click'],
     data() {
       return {
         isShowToolTip: {}
@@ -62,6 +67,9 @@
           }
         }
       }
+    },
+    created() {
+      // console.log(this.allowChange)
     }
   }
 </script>
